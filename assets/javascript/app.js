@@ -1,7 +1,7 @@
 // Initial array of movies
 // Url: https://api.giphy.com/v1/gifs/search?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9
 // My API Key: kEWG6NDA4vQsLZ9BV1HLqoWl6UixAgVI
-const movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+const movies = ["John Travolta", "Kermit the Frog", "Like a Boss", "Everything is Fine"];
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo() {
