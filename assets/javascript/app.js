@@ -51,7 +51,7 @@ function displayMovieInfo() {
         // Putting the entire movie above the previous movies
         document.getElementById("movies-view").prepend(movieDiv);
       }
-      switchState(); 
+      switchState();
     });
 
 }
@@ -90,18 +90,18 @@ document.getElementById("add-movie").addEventListener("click", function (event) 
   // This line grabs the input from the textbox
   const movie = document.getElementById("movie-input").value.trim();
   // Adding the movie from the textbox to our array
-  const movieChecker = movies.findIndex(function(currentMovie){
+  const movieChecker = movies.findIndex(function (currentMovie) {
     return currentMovie === movie;
   }, movie);
 
-  if(movie !== "" && movieChecker === -1){
-  movies.push(movie);
-  console.log(movies);
+  if (movie !== "" && movieChecker === -1) {
+    movies.push(movie);
+    console.log(movies);
 
-  // Calling renderButtons which handles the processing of our movie array
-  renderButtons();
+    // Calling renderButtons which handles the processing of our movie array
+    renderButtons();
   }
-  else{
+  else {
     console.log("Stop trying to break my crap John");
   }
 });
@@ -110,20 +110,22 @@ renderButtons();
 
 function switchState() {
   document.querySelectorAll(".movie").forEach(function (img) {
-    img.addEventListener("click", function (event) {
-
-      // The javascript getAttribute method allows us to get or set the value of any attribute on our HTML element
-      let state = event.target.getAttribute("data-state");
-      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-      // Then, set the image's data-state to animate
-      // Else set src to the data-still value
-      if (state === "still") {
-        event.target.setAttribute("src", event.target.getAttribute("data-animate"));
-        event.target.setAttribute("data-state", "animate");
-      } else {
-        event.target.setAttribute("src", event.target.getAttribute("data-still"));
-        event.target.setAttribute("data-state", "still");
-      }
-    });
+    img.removeEventListener("click", switchState2(event))
+    img.addEventListener("click", switchState2(event))
   });
+}
+
+function switchState2(img, event) {
+  // The javascript getAttribute method allows us to get or set the value of any attribute on our HTML element
+  let state = event.target.getAttribute("data-state");
+  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+  // Then, set the image's data-state to animate
+  // Else set src to the data-still value
+  if (state === "still") {
+    event.target.setAttribute("src", event.target.getAttribute("data-animate"));
+    event.target.setAttribute("data-state", "animate");
+  } else {
+    event.target.setAttribute("src", event.target.getAttribute("data-still"));
+    event.target.setAttribute("data-state", "still");
+  }
 }
