@@ -110,22 +110,20 @@ renderButtons();
 
 function switchState() {
   document.querySelectorAll(".movie").forEach(function (img) {
-    img.removeEventListener("click", switchState2(event))
-    img.addEventListener("click", switchState2(event))
-  });
-}
-
-function switchState2(img, event) {
-  // The javascript getAttribute method allows us to get or set the value of any attribute on our HTML element
-  let state = event.target.getAttribute("data-state");
-  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-  // Then, set the image's data-state to animate
-  // Else set src to the data-still value
-  if (state === "still") {
-    event.target.setAttribute("src", event.target.getAttribute("data-animate"));
-    event.target.setAttribute("data-state", "animate");
-  } else {
-    event.target.setAttribute("src", event.target.getAttribute("data-still"));
-    event.target.setAttribute("data-state", "still");
-  }
+    img.addEventListener("click", function (event) {
+      // The javascript getAttribute method allows us to get or set the value of any attribute on our HTML element
+      let state = event.target.getAttribute("data-state");
+      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      // Then, set the image's data-state to animate
+      // Else set src to the data-still value
+      if (state === "still") {
+        event.target.setAttribute("src", event.target.getAttribute("data-animate"));
+        event.target.setAttribute("data-state", "animate");
+      } else {
+        event.target.setAttribute("src", event.target.getAttribute("data-still"));
+        event.target.setAttribute("data-state", "still");
+      }
+    })
+    img.setAttribute("class", "new");
+  })
 }
